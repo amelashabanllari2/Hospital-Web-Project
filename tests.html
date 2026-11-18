@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Hospital - Tests</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🏥 Health Hospital</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="doctors.html">Doctors</a>
+            <a href="tests.html">Tests</a>
+            <a href="products.html">Herbal products</a>
+            <a href="appointments.html">My appointments</a>
+            <a href="info.html">Info</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Tests</h2>
+
+        <!-- FILTERS -->
+        <div class="box filters">
+            <div>
+                <label for="search">Search tests</label>
+                <input type="text" id="search" placeholder="e.g. blood">
+            </div>
+            <div>
+                <label for="sortBy">Sort by</label>
+                <select id="sortBy">
+                    <option value="name">Name</option>
+                    <option value="priceLow">Price (lowest)</option>
+                    <option value="priceHigh">Price (highest)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layout">
+            <!-- LEFT SIDE: LIST OF TESTS -->
+            <div>
+                <p id="countText"></p>
+                <div id="testList" class="grid"></div>
+            </div>
+
+            <!-- RIGHT SIDE: TOTAL -->
+            <aside class="sidebar">
+                <div class="box">
+                    <h3>Your selection</h3>
+                    <div id="selectedList"></div>
+
+                    <p class="total">Total: <span id="total">0</span> ALL</p>
+                    <p>Selected tests: <span id="selectedCount">0</span></p>
+
+                    <p class="error" id="selectError"></p>
+                    <button id="confirmBtn">Confirm</button>
+                    <button id="clearBtn" class="danger">Clear</button>
+                </div>
+
+                <!-- FORM (appears after pressing Confirm) -->
+                <div id="confirmBox" class="box hidden">
+                    <h3>Patient details</h3>
+                    <form id="testForm">
+                        <label for="name">Full name</label>
+                        <input type="text" id="name">
+
+                        <label for="email">Email</label>
+                        <input type="text" id="email">
+
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone">
+
+                        <label for="date">Date you will come</label>
+                        <input type="date" id="date">
+
+                        <p class="error" id="errorBox"></p>
+                        <button type="submit">Finish</button>
+                    </form>
+                </div>
+
+                <div class="success" id="result"></div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Health Hospital | Tel: +355 69 123 4567</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="common.js"></script>
+    <script src="tests.js"></script>
+</body>
+</html>

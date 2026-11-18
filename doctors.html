@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Hospital - Doctors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🏥 Health Hospital</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="doctors.html">Doctors</a>
+            <a href="tests.html">Tests</a>
+            <a href="products.html">Herbal products</a>
+            <a href="appointments.html">My appointments</a>
+            <a href="info.html">Info</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Our doctors</h2>
+
+        <!-- FILTERS -->
+        <div class="box filters">
+            <div>
+                <label for="search">Search by name</label>
+                <input type="text" id="search" placeholder="e.g. Arben">
+            </div>
+            <div>
+                <label for="specialty">Specialty</label>
+                <select id="specialty">
+                    <option value="all">All</option>
+                </select>
+            </div>
+            <div>
+                <label for="dayFilter">Available on</label>
+                <select id="dayFilter">
+                    <option value="all">Any day</option>
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                    <option value="0">Sunday</option>
+                </select>
+            </div>
+            <div>
+                <label for="sortBy">Sort by</label>
+                <select id="sortBy">
+                    <option value="name">Name</option>
+                    <option value="experience">Experience (most)</option>
+                </select>
+            </div>
+        </div>
+
+        <p id="countText"></p>
+        <div id="doctorList" class="grid"></div>
+
+        <!-- BOOKING FORM -->
+        <div id="bookingBox" class="box hidden">
+            <h2>Confirm appointment</h2>
+            <p>Doctor: <strong id="selectedDoctor"></strong></p>
+            <p>Available days: <strong id="selectedDays"></strong></p>
+
+            <form id="bookingForm">
+                <label for="name">Full name</label>
+                <input type="text" id="name">
+
+                <label for="email">Email</label>
+                <input type="text" id="email">
+
+                <label for="phone">Phone</label>
+                <input type="text" id="phone">
+
+                <label for="date">Date</label>
+                <input type="date" id="date">
+
+                <label for="time">Time</label>
+                <select id="time">
+                    <option value="">Choose a date first</option>
+                </select>
+
+                <p class="error" id="errorBox"></p>
+                <button type="submit">Confirm appointment</button>
+                <button type="button" id="cancelBtn" class="danger">Close</button>
+            </form>
+            <p class="success" id="result"></p>
+        </div>
+    </main>
+
+    <!-- DOCTOR PROFILE POPUP -->
+    <div id="profileModal" class="modal hidden">
+        <div class="modal-content">
+            <button type="button" class="close-btn" onclick="closeProfile()">×</button>
+            <div id="profileContent"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Health Hospital | Tel: +355 69 123 4567</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="common.js"></script>
+    <script src="doctors.js"></script>
+</body>
+</html>
