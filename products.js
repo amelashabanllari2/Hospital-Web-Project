@@ -1,4 +1,3 @@
-// ---------- ELEMENTS ----------
 var productList = document.getElementById("productList");
 
 var cartList = document.getElementById("cartList");
@@ -17,12 +16,9 @@ var dateInput = document.getElementById("date");
 var errorBox = document.getElementById("errorBox");
 var result = document.getElementById("result");
 
-// the cart is a list of objects like { id: 1, qty: 2 }
 var cart = [];
 setMinDate(dateInput);
 
-// ---------- HELPERS ----------
-// returns the position of the product in the cart, or -1
 function findInCart(id) {
     for (var i = 0; i < cart.length; i++) {
         if (cart[i].id === id) {
@@ -41,7 +37,6 @@ function getProduct(id) {
     return null;
 }
 
-// ---------- SHOW THE PRODUCTS ----------
 function showProducts() {
     productList.innerHTML = "";
     for (var i = 0; i < products.length; i++) {
@@ -74,7 +69,6 @@ function showProducts() {
     }
 }
 
-// ---------- CHANGE THE QUANTITY (+1, -1, or -999 to remove) ----------
 function changeQty(id, amount) {
     var position = findInCart(id);
 
@@ -88,7 +82,6 @@ function changeQty(id, amount) {
             cart[position].qty = 10;
         }
         if (cart[position].qty <= 0) {
-            // remove it from the cart
             var newCart = [];
             for (var i = 0; i < cart.length; i++) {
                 if (cart[i].id !== id) {
@@ -105,7 +98,6 @@ function changeQty(id, amount) {
     showCart();
 }
 
-// ---------- THE CART AND THE TOTAL ----------
 function showCart() {
     var total = 0;
     var items = 0;
@@ -137,7 +129,6 @@ function showCart() {
     itemCountText.textContent = items;
 }
 
-// ---------- CLEAR ----------
 clearBtn.addEventListener("click", function () {
     cart = [];
     cartError.textContent = "";
@@ -146,7 +137,6 @@ clearBtn.addEventListener("click", function () {
     showCart();
 });
 
-// ---------- CONFIRM (shows the form) ----------
 confirmBtn.addEventListener("click", function () {
     result.innerHTML = "";
 
@@ -161,7 +151,6 @@ confirmBtn.addEventListener("click", function () {
     confirmBox.scrollIntoView();
 });
 
-// ---------- FINISH (saves the order) ----------
 orderForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -176,7 +165,6 @@ orderForm.addEventListener("submit", function (event) {
         checkDate(dateInput.value);
         checkPharmacyDay(dateInput.value);
 
-        // names and total
         var names = "";
         var total = 0;
         for (var i = 0; i < cart.length; i++) {
@@ -228,6 +216,5 @@ orderForm.addEventListener("submit", function (event) {
     }
 });
 
-// ---------- START ----------
 showProducts();
 showCart();

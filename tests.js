@@ -1,4 +1,3 @@
-// ---------- ELEMENTS ----------
 var searchInput = document.getElementById("search");
 var sortSelect = document.getElementById("sortBy");
 var countText = document.getElementById("countText");
@@ -20,11 +19,9 @@ var dateInput = document.getElementById("date");
 var errorBox = document.getElementById("errorBox");
 var result = document.getElementById("result");
 
-// list with the ids of the selected tests
 var selected = [];
 setMinDate(dateInput);
 
-// ---------- IS IT SELECTED? ----------
 function isSelected(id) {
     for (var i = 0; i < selected.length; i++) {
         if (selected[i] === id) {
@@ -34,11 +31,9 @@ function isSelected(id) {
     return false;
 }
 
-// ---------- SHOW TESTS ----------
 function showTests() {
     var searchText = searchInput.value.toLowerCase().trim();
 
-    // 1) collect the tests that match the search
     var found = [];
     for (var i = 0; i < tests.length; i++) {
         if (tests[i].name.toLowerCase().indexOf(searchText) !== -1) {
@@ -46,7 +41,6 @@ function showTests() {
         }
     }
 
-    // 2) sorting (bubble sort)
     for (var a = 0; a < found.length; a++) {
         for (var b = 0; b < found.length - 1 - a; b++) {
             var swap = false;
@@ -65,7 +59,6 @@ function showTests() {
         }
     }
 
-    // 3) display
     testList.innerHTML = "";
     for (var c = 0; c < found.length; c++) {
         var t = found[c];
@@ -90,7 +83,6 @@ function showTests() {
     countText.textContent = found.length + " test(s) found.";
 }
 
-// ---------- ADD / REMOVE ----------
 function toggleTest(id) {
     if (isSelected(id)) {
         var newList = [];
@@ -110,7 +102,6 @@ function toggleTest(id) {
     showSummary();
 }
 
-// ---------- SUMMARY AND TOTAL ----------
 function showSummary() {
     var total = 0;
     selectedList.innerHTML = "";
@@ -137,7 +128,6 @@ function showSummary() {
     selectedCountText.textContent = selected.length;
 }
 
-// ---------- CLEAR ----------
 clearBtn.addEventListener("click", function () {
     selected = [];
     selectError.textContent = "";
@@ -146,7 +136,6 @@ clearBtn.addEventListener("click", function () {
     showSummary();
 });
 
-// ---------- CONFIRM (shows the form) ----------
 confirmBtn.addEventListener("click", function () {
     result.innerHTML = "";
 
@@ -161,7 +150,6 @@ confirmBtn.addEventListener("click", function () {
     confirmBox.scrollIntoView();
 });
 
-// ---------- FINISH (saves the tests) ----------
 testForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -176,7 +164,6 @@ testForm.addEventListener("submit", function (event) {
         checkDate(dateInput.value);
         checkTestDay(dateInput.value);
 
-        // names, total and the longest waiting time for results
         var names = "";
         var total = 0;
         var maxDays = 0;
@@ -213,7 +200,6 @@ testForm.addEventListener("submit", function (event) {
         list.push(newAppointment);
         saveAppointments(list);
 
-        // message with visiting hours and results time
         var message = "<p>✅ Your tests are confirmed for <strong>" + date + "</strong>. Total: <strong>" + total + " ALL</strong>.</p>";
         message = message + "<p>🏥 You can come to us to do the tests:<br>" +
             "Monday - Friday: 08:00 - 20:00<br>" +
@@ -248,10 +234,8 @@ testForm.addEventListener("submit", function (event) {
     }
 });
 
-// ---------- FILTER EVENTS ----------
 searchInput.addEventListener("input", showTests);
 sortSelect.addEventListener("change", showTests);
 
-// ---------- START ----------
 showTests();
 showSummary();

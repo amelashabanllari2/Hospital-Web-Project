@@ -1,7 +1,4 @@
-// Shared data (doctors, team, tests, herbal products)
-// Later we can load these from a database
-// days: 1 = Monday ... 6 = Saturday, 0 = Sunday
-// photo: to use a real photo, put it in images/doctors/ and change the path here
+
 
 var doctors = [
     {
@@ -86,7 +83,6 @@ var doctors = [
     }
 ];
 
-// People shown in the "Meet our team" section on the home page
 var team = [
     { name: "Dr. Arben Hoxha", role: "Cardiologist", photo: "images/doctors/d1.svg" },
     { name: "Dr. Elira Kola", role: "Pediatrician", photo: "images/doctors/d2.svg" },
@@ -96,7 +92,7 @@ var team = [
     { name: "Ermal Dedja", role: "Emergency nurse", photo: "images/doctors/n2.svg" }
 ];
 
-// resultDays = how many days after the test the results are ready (0 = same day)
+
 var tests = [
     { id: 1, name: "Complete blood count", price: 800, resultDays: 1 },
     { id: 2, name: "Blood glucose", price: 300, resultDays: 0 },
@@ -108,7 +104,7 @@ var tests = [
     { id: 8, name: "Liver function", price: 1100, resultDays: 2 }
 ];
 
-// Herbal products made by our hospital staff
+
 var products = [
     {
         id: 1, name: "Calm Tea", price: 450, size: "50 g",

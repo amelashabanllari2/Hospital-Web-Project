@@ -9,10 +9,8 @@ var yesBtn = document.getElementById("yesBtn");
 var noBtn = document.getElementById("noBtn");
 var messageBox = document.getElementById("messageBox");
 
-// the appointment that is waiting for a "yes" or "no"
 var pendingId = null;
 
-// ---------- SHOW APPOINTMENTS ----------
 function showAppointments() {
     var list = getAppointments();
     appointmentList.innerHTML = "";
@@ -75,7 +73,6 @@ function showAppointments() {
     countText.textContent = "Total: " + count;
 }
 
-// ---------- ASK FIRST: the warning appears at the top of the page ----------
 function askCancel(id) {
     var list = getAppointments();
     var name = "";
@@ -92,7 +89,7 @@ function askCancel(id) {
     window.scrollTo(0, 0);
 }
 
-// ---------- YES: cancel it (the time slot becomes free again) ----------
+
 yesBtn.addEventListener("click", function () {
     var list = getAppointments();
     for (var i = 0; i < list.length; i++) {
@@ -108,13 +105,12 @@ yesBtn.addEventListener("click", function () {
     showAppointments();
 });
 
-// ---------- NO: keep it ----------
+
 noBtn.addEventListener("click", function () {
     pendingId = null;
     warningBox.classList.add("hidden");
 });
 
-// ---------- DELETE (only cancelled ones) ----------
 function deleteAppointment(id) {
     var list = getAppointments();
     var newList = [];

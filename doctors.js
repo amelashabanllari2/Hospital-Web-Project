@@ -1,4 +1,3 @@
-// ---------- ELEMENTS ----------
 var searchInput = document.getElementById("search");
 var specialtySelect = document.getElementById("specialty");
 var dayFilter = document.getElementById("dayFilter");
@@ -24,7 +23,6 @@ var profileContent = document.getElementById("profileContent");
 var selectedDoctor = null;
 setMinDate(dateInput);
 
-// ---------- FILL SPECIALTIES (no repeats) ----------
 function fillSpecialties() {
     var found = [];
     for (var i = 0; i < doctors.length; i++) {
@@ -43,7 +41,6 @@ function fillSpecialties() {
     }
 }
 
-// does the doctor work on this day number?
 function worksOn(doctor, day) {
     for (var i = 0; i < doctor.days.length; i++) {
         if (doctor.days[i] === day) {
@@ -53,13 +50,11 @@ function worksOn(doctor, day) {
     return false;
 }
 
-// ---------- SHOW DOCTORS ----------
 function showDoctors() {
     var searchText = searchInput.value.toLowerCase().trim();
     var spec = specialtySelect.value;
     var dayValue = dayFilter.value;
 
-    // 1) collect the doctors that pass the filters
     var found = [];
     for (var i = 0; i < doctors.length; i++) {
         var d = doctors[i];
@@ -72,7 +67,6 @@ function showDoctors() {
         }
     }
 
-    // 2) sorting (bubble sort)
     for (var a = 0; a < found.length; a++) {
         for (var b = 0; b < found.length - 1 - a; b++) {
             var swap = false;
@@ -89,7 +83,6 @@ function showDoctors() {
         }
     }
 
-    // 3) display
     doctorList.innerHTML = "";
     for (var c = 0; c < found.length; c++) {
         var doc = found[c];
@@ -109,7 +102,6 @@ function showDoctors() {
     countText.textContent = found.length + " doctor(s) found.";
 }
 
-// ---------- DOCTOR PROFILE POPUP ----------
 function showProfile(id) {
     var doc = null;
     for (var i = 0; i < doctors.length; i++) {
@@ -140,7 +132,6 @@ function closeProfile() {
     profileModal.classList.add("hidden");
 }
 
-// close when clicking outside the white box, or pressing Escape
 profileModal.addEventListener("click", function (event) {
     if (event.target === profileModal) {
         closeProfile();
@@ -152,7 +143,6 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-// ---------- CHOOSE A DOCTOR ----------
 function chooseDoctor(id) {
     for (var i = 0; i < doctors.length; i++) {
         if (doctors[i].id === id) {
@@ -169,7 +159,6 @@ function chooseDoctor(id) {
     bookingBox.scrollIntoView();
 }
 
-// ---------- FILL THE TIME LIST (booked times are disabled) ----------
 function updateTimes() {
     timeSelect.innerHTML = "";
 
@@ -178,7 +167,6 @@ function updateTimes() {
         return;
     }
 
-    // the doctor must work on that day
     if (worksOn(selectedDoctor, parseDate(dateInput.value).getDay()) === false) {
         timeSelect.innerHTML = "<option value=''>Not available on this day</option>";
         errorBox.textContent = selectedDoctor.name + " is only available on: " + daysText(selectedDoctor.days) + ".";
@@ -212,13 +200,11 @@ cancelBtn.addEventListener("click", function () {
     bookingBox.classList.add("hidden");
 });
 
-// ---------- FILTER EVENTS ----------
 searchInput.addEventListener("input", showDoctors);
 specialtySelect.addEventListener("change", showDoctors);
 dayFilter.addEventListener("change", showDoctors);
 sortSelect.addEventListener("change", showDoctors);
 
-// ---------- CONFIRM THE APPOINTMENT ----------
 bookingForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -232,7 +218,6 @@ bookingForm.addEventListener("submit", function (event) {
         if (timeSelect.value === "") {
             throw new Error("Please choose a free time.");
         }
-        // check again, maybe someone booked it a second ago
         if (isSlotTaken(selectedDoctor.id, dateInput.value, timeSelect.value)) {
             throw new Error("Sorry, this time has just been booked. Please choose another one.");
         }
@@ -266,6 +251,5 @@ bookingForm.addEventListener("submit", function (event) {
     }
 });
 
-// ---------- START ----------
 fillSpecialties();
 showDoctors();

@@ -1,6 +1,5 @@
 var teamList = document.getElementById("teamList");
 
-// ---------- SHOW THE TEAM ----------
 for (var i = 0; i < team.length; i++) {
     var person = team[i];
     teamList.innerHTML +=
